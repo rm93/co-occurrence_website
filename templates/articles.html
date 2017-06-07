@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Proof of concept | Projectgroep 6</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="static/assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="static/assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="static/assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="static/assets/css/ie8.css" /><![endif]-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" language="javascript" src="static/assets/TableFilter/tablefilter.js"></script>
+		<style>
+			a {
+				color: #0254EB
+			}
+			a:visited {
+				color: #0254EB
+			}
+			a.morelink {
+				text-decoration:none;
+				outline: none;
+			}
+			.morecontent span {
+				display: none;
+			}
+			.comment {
+				width: 400px;
+				margin: 10px;
+			}
+			a.morelink {
+				text-decoration:none;
+				outline: none;
+			}
+			.morecontent span {
+				display: none;
+			}				
+		</style>
+	</head>
+	<body>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="\" class="logo"><strong>Proof of concept | Projectgroep 6</strong> door Rick Medemblik, Alex Staritsky, Richard Jansen en Stan Wehkamp</a>									
+								</header>
+							<br><br>
+							<div class="table-wrapper">
+								<table id="table1"><thead><tr><th>Titel</th><th>Keyworden</th><th>Auteurs</th><th>Datum van publicatie</th><th>Pubmed ID</th></tr></thead><tbody>{{ table|safe }}</tbody></table>
+							</div>			
+						</div>
+					</div>				
+			</div>
+
+		<!-- Scripts -->
+			<script language="javascript" type="text/javascript">  
+			var filtersConfig = {			
+				base_path: 'static/assets/Tablefilter/',		
+				alternate_rows: true,		
+				paging: false,
+				btn_reset: true,
+				btn_reset_text: "Reset",
+				loader: true,
+				loader_text: "Laden...",
+				msg_filter: 'Data filteren...',
+				msg_change_page: 'Pagina laden...',
+				msg_clear: 'Filters verwijderen...',
+				status_bar: false,
+				mark_active_columns: true,
+				highlight_keywords: true,
+				help_instructions: false,
+			};
+			
+			var tf = setFilterGrid("table1",1,filtersConfig);  
+			</script>	
+			
+			<script>
+			$(document).ready(function() {
+				var showChar = 100;
+				var moretext = "meer";
+				var lesstext = "minder";
+				var ellipsesText = "...";
+				$('.more').each(function() {
+					var content = $(this).html();
+
+					if(content.length > showChar) {
+
+						var c = content.substr(0, showChar);
+						var h = content.substr(showChar-1, content.length - showChar);
+
+						var html = c + '<span class="moreellipses">' + ellipsesText + '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+						$(this).html(html);
+					}
+
+				});
+
+				$(".morelink").click(function(){
+					if($(this).hasClass("less")) {
+						$(this).removeClass("less");
+						$(this).html(moretext);
+					} else {
+						$(this).addClass("less");
+						$(this).html(lesstext);
+					}
+					$(this).parent().prev().toggle();
+					$(this).prev().toggle();
+					return false;
+				});
+			});
+			</script>
+			<script src="static/assets/js/jquery.min.js"></script>
+			<script src="static/assets/js/skel.min.js"></script>
+			<script src="static/assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="static/assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="static/assets/js/main.js"></script>
+
+	</body>
+</html>
